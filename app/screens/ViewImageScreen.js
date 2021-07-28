@@ -1,34 +1,36 @@
 import React from 'react';
-import { View, Image, useWindowDimensions, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, StatusBar } from 'react-native';
+import Screen from '../components/Screen.android.js';
+import { MaterialCommunityIcons } from "@expo/vector-icons/";
 import colors from '../config/colors.js';
-import { NativeModules } from 'react-native';
-const { StatusBarManager } = NativeModules;
-const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBarManager.HEIGHT;
 
 function ViewImageScreen() {
     return (
-        <View style={styles.container}>
-            <View style={[styles.imageButton, { backgroundColor: colors.primary, left: 20 }]} />
-            <View style={[styles.imageButton, { backgroundColor: colors.secondary, right: 20 }]} />
+        <Screen style={styles.container}>
+            <View style={[styles.button, { left: 20 }]} >
+                <MaterialCommunityIcons color="white" name="close" size={35} />
+            </View>
+            <View style={[styles.button, { right: 20 }]} >
+                <MaterialCommunityIcons color="white" name="trash-can-outline" size={35} />
+            </View>
             <Image source={require("../assets/chair.png")} style={styles.image}></Image>
-        </View>
+        </Screen>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        backgroundColor: colors.black
     },
     image: {
         flex: 1,
         width: "100%",
         resizeMode: "contain"
     },
-    imageButton: {
-        width: 50,
-        height: 50,
+    button: {
         position: "absolute",
-        top: STATUSBAR_HEIGHT
+        top: StatusBar.currentHeight
+
     }
 })
 

@@ -1,24 +1,25 @@
 import React from 'react';
-import { View, Image, Text, ImageBackground, StyleSheet } from 'react-native';
+import { View, Image, ImageBackground, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import AppText from '../components/AppText.android.js';
 import colors from '../config/colors.js';
 import AppButton from '../components/AppButton.android.js';
 
 function WelcomeScreen() {
     return (
-        <ImageBackground source={require("../assets/background.png")} blurRadius={1} resizeMode="cover" style={styles.background}>
+        <ImageBackground source={require("../assets/background.png")} blurRadius={1.5} resizeMode="cover" style={styles.background}>
             <View style={styles.logoContainer}>
                 <Image source={require("../assets/logo-red.png")} style={styles.logo}></Image>
-                <Text style={styles.slogan}>Buy & sell bikes</Text>
-            </View>
+                <AppText style={styles.slogan}>Buy & sell bikes</AppText>
+            </View >
             <View style={styles.buttonContainer}>
                 <AppButton title="log in" color={colors.primary} style={styles.button}></AppButton>
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={[styles.buttonContainer, { marginBottom: 10 }]}>
                 <AppButton title="register" color={colors.secondary} style={styles.button}></AppButton>
             </View>
             <StatusBar style="auto" />
-        </ImageBackground>
+        </ImageBackground >
     );
 }
 const styles = StyleSheet.create({
@@ -38,10 +39,7 @@ const styles = StyleSheet.create({
     },
     slogan: {
         top: -50,
-        fontFamily: "Lato_400Regular",
-        fontWeight: "bold",
         fontSize: 20
-
     },
     buttonContainer: {
         padding: 10,

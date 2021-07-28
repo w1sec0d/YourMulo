@@ -1,7 +1,11 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity, View, TouchableNativeFeedback } from 'react-native';
+import { Text, StyleSheet, View, TouchableNativeFeedback } from 'react-native';
 import colors from '../config/colors'
-export default function AppButton({ title, fontFamily, color, onPress }) {
+import AppText from './AppText.android';
+import { Lato_400Regular } from '@expo-google-fonts/lato';
+
+
+function Button({ color = colors.primary, title, fontFamily, fontColor = colors.white, onPress, style }) {
     const styles = StyleSheet.create({
         button: {
             backgroundColor: color,
@@ -10,19 +14,22 @@ export default function AppButton({ title, fontFamily, color, onPress }) {
             padding: 15,
             alignItems: "center",
             justifyContent: "center",
+            marginVertical: 10
         },
         buttonText: {
-            color: colors.white,
+            color: fontColor,
             textTransform: "uppercase",
             fontWeight: "bold",
+            fontFamily: "Lato_400Regular",
             fontSize: 18
         }
     })
     return (
         <TouchableNativeFeedback onPress={onPress}>
-            <View style={styles.button}>
-                <Text style={[styles.buttonText, { fontFamily: fontFamily }]}>{title}</Text>
+            <View style={[styles.button, style]}>
+                <AppText style={[styles.buttonText, { fontFamily: fontFamily }]}>{title}</AppText>
             </View>
         </TouchableNativeFeedback>
     )
 }
+export default Button

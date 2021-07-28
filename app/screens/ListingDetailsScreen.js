@@ -1,24 +1,21 @@
 import React from 'react';
-import { Image, Text, View, StyleSheet, ViewPropTypes } from 'react-native';
+import { Image, Text, View, StyleSheet } from 'react-native';
+import Screen from '../components/Screen.android';
+import ListItem from '../components/ListItem.android';
 
-function ListingDetailsScreen({ title, subtitle, image, ownerImage, ownerName, ownerListings }) {
+function ListingDetailsScreen() {
     return (
-        <View style={styles.container}>
-            <Image source={image} style={styles.imageStyle}></Image>
+        <Screen>
+            <Image source={require("../assets/bike1.jpg")} style={styles.imageStyle}></Image>
             <View style={styles.detailsContainer}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.subtitle}>{subtitle}</Text>
-                <View style={styles.ownerContainer}>
-                    <Image source={ownerImage} style={styles.ownerImage}></Image>
-                </View>
+                <Text style={styles.title}>Expensive S-works</Text>
+                <Text style={styles.subtitle}>$200</Text>
+                <ListItem image={require("../assets/owner1.jpg")} title="Carlos Ramírez" subtitle="4 bikes" style={styles.ownerInfo}></ListItem>
             </View>
-        </View>
+        </Screen>
     );
 }
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
     imageStyle: {
         flex: 2,
         width: "100%"
@@ -28,20 +25,19 @@ const styles = StyleSheet.create({
         padding: 20
     },
     title: {
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: "bold",
         textTransform: "capitalize"
     },
     subtitle: {
-        fontSize: 20,
+        fontSize: 25,
         color: "#4ECDC4",
-        paddingTop: 5
+        paddingTop: 5,
+        fontWeight: "bold"
     },
-    ownerContainer: {
-        padding: 20
-    },
-    ownerImage: {
-
+    ownerInfo: {
+        marginTop: 10,
+        marginLeft: -10
     }
 })
 
